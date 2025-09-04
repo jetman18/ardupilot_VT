@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Đường dẫn file nguồn trong WSL
+#SOURCE_BIN="/home/jetman18/ardupilot/build/MicoAir743/bin/arducopter_with_bl.hex"
+SOURCE_BIN="/home/jetman18/ardupilot_VT/build/KakuteH7-Wing/bin/arducopter_with_bl.hex"
+# Đường dẫn đích trong Windows (được mount qua /mnt/)
+DEST_DIR="/mnt/c/Users/jetman18/Desktop/Flash_Copter"
+
+# Tạo thư mục đích nếu chưa tồn tại
+mkdir -p "$DEST_DIR"
+
+# Copy file
+cp "$SOURCE_BIN" "$DEST_DIR"
+
+# Kiểm tra kết quả
+if [ $? -eq 0 ]; then
+    echo "Đã copy file .bin sang Windows: $DEST_DIR"
+else
+    echo "Lỗi khi copy file"
+fi

@@ -47,3 +47,5 @@ PC9 BMI088_G_CS CS
 
 #silence buzzer during boot
 PB9 BUZZER OUTPUT GPIO(80) LOW
+
+define OPENDRONEID_ENABLED 1

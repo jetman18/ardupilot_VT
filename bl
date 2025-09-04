@@ -1,0 +1,22 @@
+
+FOLDER_A="/home/jetman18/ardupilot_VT/build/KakuteH7-Wing/bin"
+FOLDER_B="/home/jetman18/ardupilot_VT/Tools/bootloaders"
+
+
+OLD_FILE="AP_Bootloader.bin"
+NEW_FILE="KakuteH7-Wing_bl.bin"
+
+
+mkdir -p "$FOLDER_B"
+
+
+if [ ! -f "$FOLDER_A/$OLD_FILE" ]
+then
+    echo "❌ File '$OLD_FILE' không tồn tại trong $FOLDER_A"
+    exit 1
+fi
+
+
+cp -f "$FOLDER_A/$OLD_FILE" "$FOLDER_B/$NEW_FILE"
+
+echo "✅ Đã copy $OLD_FILE thành $NEW_FILE vào $FOLDER_B"
