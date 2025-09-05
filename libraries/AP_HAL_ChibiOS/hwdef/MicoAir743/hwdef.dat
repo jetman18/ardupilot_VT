@@ -16,7 +16,9 @@ define CH_CFG_ST_RESOLUTION 16
 
 # flash size
 FLASH_SIZE_KB 2048
-FLASH_RESERVE_START_KB 128
+#----------------------------------------tuannd--------------------------------
+#FLASH_RESERVE_START_KB 128
+FLASH_RESERVE_START_KB 0
 
 define HAL_STORAGE_SIZE 32768
 STORAGE_FLASH_PAGE 14
@@ -165,4 +167,6 @@ ROMFS_WILDCARD libraries/AP_OSD/fonts/font*.bin
 
 # setup for BF migration
 define HAL_FRAME_TYPE_DEFAULT 12
+
+define AP_TEXT_CMD
 

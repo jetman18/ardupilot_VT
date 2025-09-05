@@ -32,6 +32,10 @@
 
 #include "ap_message.h"
 
+#ifdef AP_TEXT_CMD
+#include "./utils/strqueue.h"
+#endif
+
 #define GCS_DEBUG_SEND_MESSAGE_TIMINGS 0
 
 #ifndef HAL_GCS_ALLOW_PARAM_SET_DEFAULT
@@ -799,6 +803,9 @@ private:
         uint32_t received_ms; // time RADIO_STATUS received
         uint8_t txbuf = 100;
     } last_radio_status;
+
+    //tuannd309
+    strqueue<5,30> Q;
 
     enum class Flags {
         USING_SIGNING = (1<<0),

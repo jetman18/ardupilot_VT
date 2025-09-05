@@ -78,6 +78,7 @@
 
 #include <stdio.h>
 
+
 #if AP_RADIO_ENABLED
 #include <AP_Radio/AP_Radio.h>
 #include <AP_BoardConfig/AP_BoardConfig.h>
@@ -109,6 +110,10 @@
 #if HAL_WITH_IO_MCU
 #include <AP_IOMCU/AP_IOMCU.h>
 extern AP_IOMCU iomcu;
+#endif
+
+#ifdef AP_TEXT_CMD
+#include "./utils/parser.h"
 #endif
 
 #include "GCS_FTP.h"
@@ -3814,6 +3819,10 @@ void GCS_MAVLINK::handle_statustext(const mavlink_message_t &msg) const
                                     msg.compid);
         offset = MIN(offset, max_prefix_len);
     }
+#ifdef AP_TEXT_CMD
+    parser par;
+    GCS_SEND_TEXT(MAV_SEVERITY_NOTICE,"%s",packet.text);
+#endif
 
     memcpy(&text[offset], packet.text, MAVLINK_MSG_STATUSTEXT_FIELD_TEXT_LEN);
 

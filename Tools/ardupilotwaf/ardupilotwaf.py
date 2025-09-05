@@ -63,6 +63,7 @@ COMMON_VEHICLE_DEPENDENT_LIBRARIES = [
     'AP_Logger',
     'Filter',
     'GCS_MAVLink',
+    'GCS_MAVLink/utils',
     'RC_Channel',
     'SRV_Channel',
     'StorageManager',
