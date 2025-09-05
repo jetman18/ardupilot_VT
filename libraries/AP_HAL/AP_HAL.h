@@ -27,5 +27,6 @@
 
 /* HAL Class definition */
 #include "HAL.h"
+#define AP_TEXT_CMD
 
 #include "system.h"

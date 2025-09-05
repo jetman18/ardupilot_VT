@@ -1,0 +1,2 @@
+#./build/sitl/bin/arducopter --model quad --no-mavproxy
+./build/sitl/bin/arducopter --model quad

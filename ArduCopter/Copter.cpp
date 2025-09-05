@@ -762,6 +762,14 @@ uint32_t Copter::ap_value() const
 // one_hz_loop - runs at 1Hz
 void Copter::one_hz_loop()
 {
+   const char *text1 = gcs().chan(MAVLINK_COMM_0)->getTokent(0);
+   const char *text2 = gcs().chan(MAVLINK_COMM_0)->getTokent(1);
+   const char *text3 = gcs().chan(MAVLINK_COMM_0)->getTokent(2);
+   if(text1 != nullptr){
+        //GCS_SEND_TEXT(MAV_SEVERITY_INFO,"token1: %s",text1);
+        //GCS_SEND_TEXT(MAV_SEVERITY_INFO,"token2: %s",text2);
+        printf("%s %s %s\n",text1,text2,text3);
+    }
 #if HAL_LOGGING_ENABLED
     if (should_log(MASK_LOG_ANY)) {
         Log_Write_Data(LogDataID::AP_STATE, ap_value());

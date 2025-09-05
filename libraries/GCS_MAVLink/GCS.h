@@ -188,6 +188,14 @@ public:
 
     static const struct AP_Param::GroupInfo        var_info[];
 
+    #ifdef AP_TEXT_CMD
+        //tuannd309
+        const char *getTokent(uint8_t);
+private:
+        char str_recv[30]={0};
+public:
+    #endif
+
     // accessors used to retrieve objects used for parsing incoming messages:
     mavlink_message_t *channel_buffer() { return &_channel_buffer; }
     mavlink_status_t *channel_status() { return &_channel_status; }
@@ -669,7 +677,7 @@ protected:
         const uint16_t interval_ms = 10000;
     }  _timesync_request;
 
-    void handle_statustext(const mavlink_message_t &msg) const;
+    void handle_statustext(const mavlink_message_t &msg);
     void handle_named_value(const mavlink_message_t &msg) const;
 
     bool telemetry_delayed() const;

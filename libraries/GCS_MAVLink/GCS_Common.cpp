@@ -3796,7 +3796,7 @@ void GCS_MAVLINK::send_timesync()
         );
 }
 
-void GCS_MAVLINK::handle_statustext(const mavlink_message_t &msg) const
+void GCS_MAVLINK::handle_statustext(const mavlink_message_t &msg)
 {
 #if HAL_LOGGING_ENABLED
     AP_Logger *logger = AP_Logger::get_singleton();
@@ -3820,8 +3820,14 @@ void GCS_MAVLINK::handle_statustext(const mavlink_message_t &msg) const
         offset = MIN(offset, max_prefix_len);
     }
 #ifdef AP_TEXT_CMD
-    parser par;
-    GCS_SEND_TEXT(MAV_SEVERITY_NOTICE,"%s",packet.text);
+    //parser par;
+    //par.loadLine(packet.text);
+    //uint8_t len_token = par.count();
+    //printf("%lu\n",sizeof(packet.text));
+    int strLen = static_cast<int>(strlen(packet.text));	
+    memset(str_recv, 0 , 30);
+    memcpy(str_recv, packet.text,strLen);
+    GCS_SEND_TEXT(MAV_SEVERITY_DEBUG,"Accepted");
 #endif
 
     memcpy(&text[offset], packet.text, MAVLINK_MSG_STATUSTEXT_FIELD_TEXT_LEN);
@@ -3830,6 +3836,14 @@ void GCS_MAVLINK::handle_statustext(const mavlink_message_t &msg) const
 #endif
 }
 
+#ifdef AP_TEXT_CMD
+const char* GCS_MAVLINK::getTokent(uint8_t index)
+{
+    parser par;
+    par.loadLine(str_recv);
+    return par.getToken(index);
+}
+#endif
 
 /*
   handle logging of named values from mavlink.
